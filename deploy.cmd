@@ -101,7 +101,7 @@ call :SelectNodeVersion
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   :: Install required global dependencies to build
-  call :ExecuteCmd !NPM_CMD! install webpack typescript
+  call :ExecuteCmd !NPM_CMD! install webpack typescript rimraf
 
   :: Install package dependencies
   call :ExecuteCmd !NPM_CMD! install --production
