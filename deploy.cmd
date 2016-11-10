@@ -100,6 +100,10 @@ call :SelectNodeVersion
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
+  :: Install required global dependencies to build
+  call :ExecuteCmd !NPM_CMD! install webpack typescript
+
+  :: Install package dependencies
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
